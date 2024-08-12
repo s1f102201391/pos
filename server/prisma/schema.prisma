@@ -26,6 +26,8 @@ model Task {
 }
 
 model Pos {
-  id       String @id
-  category String
+  id        String @id
+  category  String
+  title     String
+  createdAt String
 }

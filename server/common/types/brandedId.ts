@@ -10,3 +10,7 @@ type Dto<T extends IdName> = string & z.BRAND<`${T}DtoId`>;
 export type DtoId = { [T in IdName]: Dto<T> };
 
 export type MaybeId = { [T in IdName]: Dto<T> | Branded<'maybe'> };
+
+export type PostoId = { [T in IdName]: Dto<T> };
+
+export type EntityId = { [T in IdName]: Dto<T> };
