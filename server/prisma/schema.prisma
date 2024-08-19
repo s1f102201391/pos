@@ -26,8 +26,10 @@ model Task {
 }
 
 model Pos {
-  id        String @id
+  id        String   @id
   category  String
   title     String
-  createdAt String
+  createdAt DateTime
+  status    String
+  errorMsg  String?
 }
