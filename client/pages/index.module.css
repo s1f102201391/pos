@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
   padding: 40px 16px;
-  background: #f8f8f8;
+  background-image: url('/images/bg.jpg');
 }
 
 @keyframes gradient {

@@ -1,0 +1,86 @@
+/* チャットコンテナの親要素に対してフレックスボックスを適用 */
+.chatWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 画面全体を使って中央に配置 */
+  background-color: #f8f8f8; /* 背景色を追加（必要に応じて） */
+}
+
+/* チャットコンテナ */
+.chatContainer {
+  box-sizing: border-box; /* パディングとボーダーを含めて要素の幅を計算 */
+  width: 100%; /* 親要素の幅に対して100% */
+  max-width: 600px; /* 必要に応じて最大幅を設定 */
+  padding: 20px;
+  overflow: hidden; /* 内容があふれた場合にスクロールバーを表示しない */
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+}
+
+.chatContainer:hover {
+  box-shadow: 0 8px 30px rgb(0 0 0 / 20%);
+}
+
+/* 入力フィールド */
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* ボタン */
+.button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 6px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  background-color: #1d4ed8;
+  transform: translateY(0);
+}
+
+/* 応答メッセージ */
+.responseTitle {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.responseText {
+  box-sizing: border-box; /* パディングとボーダーを含めて要素の幅を計算 */
+  display: block; /* ブロック表示にして親要素の幅を利用 */
+  width: 100%; /* 親要素の幅を使用 */
+  padding: 10px;
+  font-size: 16px;
+  word-break: break-word; /* 長い単語やURLを適切に折り返す */
+  word-wrap: break-word; /* 長い単語を折り返す */
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}

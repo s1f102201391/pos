@@ -1,4 +1,4 @@
-export const APP_NAME = 'CATAPULT';
+export const APP_NAME = 'POSsupport';
 
 export const BRANDED_ID_NAMES = ['user', 'task', 'pos'] as const;
 
