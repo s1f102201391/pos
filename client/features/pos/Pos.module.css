@@ -3,8 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* 画面全体を使って中央に配置 */
-  background-color: #f8f8f8; /* 背景色を追加（必要に応じて） */
+  height: 70vh; /* 画面全体を使って中央に配置 */
 }
 
 /* チャットコンテナ */
