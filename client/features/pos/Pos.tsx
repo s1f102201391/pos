@@ -28,10 +28,10 @@ export const ChatComponent = () => {
           type="text"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
-          placeholder="店名を入力"
+          placeholder="質問を入力"
           disabled={isLoading}
         />
-        <input
+        {/* <input
           className={styles.input}
           type="text"
           value={question}
@@ -46,7 +46,7 @@ export const ChatComponent = () => {
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="前日の発注数を入力"
           disabled={isLoading}
-        />
+        /> */}
         <button
           className={styles.button}
           onClick={handleAskQuestion}

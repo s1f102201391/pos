@@ -96,21 +96,7 @@ export const TaskList = () => {
             value={label}
             className={styles.textInput}
             type="text"
-            placeholder="店名を入力"
-            onChange={(e) => setLabel(e.target.value)}
-          />
-          <input
-            value={label}
-            className={styles.textInput}
-            type="text"
-            placeholder="商品を入力"
-            onChange={(e) => setLabel(e.target.value)}
-          />
-          <input
-            value={label}
-            className={styles.textInput}
-            type="text"
-            placeholder="前日の発注数を入力"
+            placeholder="taskを入力"
             onChange={(e) => setLabel(e.target.value)}
           />
           <div className={styles.controls}>

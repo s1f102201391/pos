@@ -1,4 +1,5 @@
 import { ChatComponent } from 'features/pos/Pos';
+import { TaskList } from 'features/tasks/TaskList';
 import { Layout } from 'layouts/Layout';
 import styles from './index.module.css';
 
@@ -9,7 +10,7 @@ const Home = () => {
         <div className={styles.container}>
           <div className={styles.title}>Hello {user.signInName}!</div>
           <ChatComponent />
-          {/* <TaskList /> */}
+          <TaskList />
         </div>
       )}
     />
