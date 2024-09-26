@@ -3,8 +3,9 @@ import { decode } from 'iconv-lite';
 import { transaction } from 'service/prismaClient';
 
 export const classUseCase = {
-  scrapeClassAndInstructors: async (classUrl: string): Promise<string | null> => {
+  scrapeClassAndInstructors: async (): Promise<string | null> => {
     return transaction('RepeatableRead', async () => {
+      const classUrl = 'https://g-sys.toyo.ac.jp/syllabus/'; // URLを固定で使用
       // URLからHTMLコンテンツをフェッチ
       const response = await fetch(classUrl); // URLを使ってデータをフェッチ
       const buffer = await response.arrayBuffer(); // データをバッファとして取得
