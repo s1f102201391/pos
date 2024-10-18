@@ -94,3 +94,16 @@ model Syllabus {
   department   Department @relation(fields: [departmentId], references: [id])
   createdAt    DateTime   @default(now())
 }
+
+model Ingredient {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model Recipe {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+
+  ingredientId Int
+}

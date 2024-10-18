@@ -1,20 +1,17 @@
-import { streamChatCompletion } from '../../../server/domain/pos/event/posEvent';
+import { analyzeImageAndGetRecipes } from '../../../server/domain/pos/event/posEvent';
 import { defineController } from './$relay';
 
 export default defineController(() => ({
   post: async ({ body }) => {
-    console.log('Received question:', body.question); // リクエストで送信された質問をログに出力
-
     try {
-      const responseText = await streamChatCompletion(body.question);
-      console.log('OpenAI API Response:', responseText); // OpenAI API のレスポンスをログに出力
-
+      const image = body.get('image') as File;
+      const recipes = await analyzeImageAndGetRecipes(image);
       return {
         status: 200,
-        body: { response: responseText },
+        body: { recipes },
       };
     } catch (error) {
-      console.error('Error in streamChatCompletion:', error); // エラーが発生した場合のログ
+      console.error('Error in analyzeImageAndGetRecipes:', error);
       return {
         status: 500,
         body: { error: 'Internal Server Error' },

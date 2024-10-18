@@ -5,16 +5,37 @@ import { transaction } from 'service/prismaClient';
 export const classUseCase = {
   scrapeClassAndInstructors: async (): Promise<string | null> => {
     return transaction('RepeatableRead', async () => {
-      const classUrl = 'https://g-sys.toyo.ac.jp/syllabus/'; // URLを固定で使用
-      // URLからHTMLコンテンツをフェッチ
-      const response = await fetch(classUrl); // URLを使ってデータをフェッチ
-      const buffer = await response.arrayBuffer(); // データをバッファとして取得
-      const html = decode(Buffer.from(buffer), 'Shift_JIS'); // Shift_JIS を UTF-8 にデコード
-      const $ = load(html); // HTML コンテンツを解析
+      const classUrl = 'https://g-sys.toyo.ac.jp/syllabus/category/18501';
+      // URLを固定で使用
 
-      // 必要なテキストを取得
-      const mainText = $('div.main_text').text().trim(); // div.main_text のテキストを抽出
-      return mainText ? mainText : null; // テキストがない場合は null を返す
+      try {
+        // URLからHTMLコンテンツをフェッチ
+        const response = await fetch(classUrl);
+        console.log('fetch successful', response);
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+        }
+
+        const buffer = await response.arrayBuffer();
+        console.log('buffer', buffer);
+
+        // デコード処理
+        const html = decode(Buffer.from(buffer), 'UTF-8');
+        console.log('decoded', html);
+
+        const $ = load(html);
+        console.log('cheerio', $);
+
+        // 必要なテキストを取得
+        const mainText = $('.course_name').text().trim();
+        console.log('Course name extracted:', mainText);
+
+        return mainText ? mainText : null;
+      } catch (error) {
+        console.error('An error occurred:', error);
+        return null;
+      }
     });
   },
 };
@@ -31,6 +52,20 @@ export const classUseCase = {
 // const departmentName = '情報連携学科'; // 固定値として学科名
 
 // スクレイピングデータを型に合わせて作成
+// スクレイピングデータを型に合わせて作成
+// const scrapedData: ScrapedSyllabusData[] = [
+//   {
+//     courseName,
+//     instructor,
+//     semester,
+//     period,
+//     conduction,
+//     yearOfStudy,
+//     language,
+//     facultyName,
+//     departmentName,
+//   },
+// ];
 
 // データベースに保存
 // await scrapeAndSaveSyllabus(tx);
