@@ -4,8 +4,14 @@ import { defineController } from './$relay';
 export default defineController(() => ({
   post: async ({ body }) => {
     try {
-      const image = body.get('image') as File;
-      const recipes = await analyzeImageAndGetRecipes(image);
+      if (!body.imageData) {
+        return {
+          status: 400,
+          body: { error: 'Image data is required' },
+        };
+      }
+
+      const recipes = await analyzeImageAndGetRecipes(body.imageData);
       return {
         status: 200,
         body: { recipes },

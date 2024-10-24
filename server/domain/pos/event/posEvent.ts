@@ -21,11 +21,11 @@
 
 import { openai } from 'service/openai';
 
-export async function analyzeImageAndGetRecipes(image: File): Promise<string[]> {
+// analyzeImageAndGetRecipes関数の引数の型を変更
+export async function analyzeImageAndGetRecipes(imageBase64: string): Promise<string[]> {
   try {
-    const base64Image = await imageToBase64(image);
     const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini', // 注意: モデル名を正確に指定してください
+      model: 'gpt-4o-mini',
       messages: [
         {
           role: 'user',
@@ -37,7 +37,7 @@ export async function analyzeImageAndGetRecipes(image: File): Promise<string[]> 
             {
               type: 'image_url',
               image_url: {
-                url: `data:image/jpeg;base64,${base64Image}`,
+                url: `data:image/jpeg;base64,${imageBase64}`,
               },
             },
           ],
@@ -50,8 +50,7 @@ export async function analyzeImageAndGetRecipes(image: File): Promise<string[]> 
       throw new Error('Unexpected response format from OpenAI API');
     }
 
-    const suggestedRecipes = parseRecipes(content);
-    return suggestedRecipes;
+    return parseRecipes(content);
   } catch (error) {
     console.error('Error in analyzeImageAndGetRecipes:', error);
     throw error;
@@ -61,23 +60,22 @@ export async function analyzeImageAndGetRecipes(image: File): Promise<string[]> 
 function parseRecipes(content: string): string[] {
   // OpenAIの応答をパースしてレシピのリストを作成
   const recipes = content.split(/\d+\.\s/).filter((recipe) => recipe.trim() !== '');
-  console.log('あ');
   return recipes.map((recipe) => recipe.trim());
 }
 
-async function imageToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (): void => {
-      const result = reader.result;
-      if (typeof result === 'string') {
-        const base64String = result.split(',')[1];
-        resolve(base64String);
-      } else {
-        reject(new Error('Failed to convert image to base64'));
-      }
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
+// async function imageToBase64(file: File): Promise<string> {
+//   return new Promise((resolve, reject) => {
+//     const reader = new FileReader();
+//     reader.onload = (): void => {
+//       const result = reader.result;
+//       if (typeof result === 'string') {
+//         const base64String = result.split(',')[1];
+//         resolve(base64String);
+//       } else {
+//         reject(new Error('Failed to convert image to base64'));
+//       }
+//     };
+//     reader.onerror = reject;
+//     reader.readAsDataURL(file);
+//   });
+// }
