@@ -1,7 +1,10 @@
 .container {
   min-height: 100vh;
-  padding: 40px 16px;
+  padding: 20px 16px 40px;
   background-image: url('/images/bg.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 @keyframes gradient {
@@ -19,8 +22,8 @@
 }
 
 .title {
-  padding-top: 40px;
-  font-size: 80px;
+  margin-bottom: 20px;
+  font-size: clamp(40px, 8vw, 80px); /* レスポンシブなフォントサイズ */
   font-weight: 900;
   color: transparent;
   text-align: center;

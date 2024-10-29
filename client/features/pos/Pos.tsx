@@ -8,6 +8,7 @@ export const ChatComponent = () => {
   const [recipes, setRecipes] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [preferredIngredient, setPreferredIngredient] = useState('');
   const fileRef = useRef<HTMLInputElement | null>(null);
   const previewImageUrl = useMemo(() => image && URL.createObjectURL(image), [image]);
 
@@ -42,6 +43,7 @@ export const ChatComponent = () => {
         body: {
           FormData: [], // 既存の型定義に合わせて空配列を設定
           imageData: base64Image,
+          preferredIngredient,
         },
       });
       return Ok(response.recipes);
@@ -72,11 +74,20 @@ export const ChatComponent = () => {
         {previewImageUrl && (
           <img src={previewImageUrl} alt="Preview" className={styles.previewImage} />
         )}
+
         <input
           type="file"
           ref={fileRef}
           accept="image/*"
           onChange={handleImageUpload}
+          disabled={isLoading}
+        />
+        <input
+          type="text"
+          value={preferredIngredient}
+          onChange={(e) => setPreferredIngredient(e.target.value)}
+          placeholder="特に使いたい食材があれば入力してください"
+          className={styles.ingredientInput}
           disabled={isLoading}
         />
         <button className={styles.button} onClick={onSubmit} disabled={isLoading || !image}>
