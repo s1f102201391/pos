@@ -4,11 +4,12 @@ import { openai } from 'service/openai';
 export async function analyzeImageAndGetRecipes(
   imageBase64: string,
   preferredIngredient?: string,
+  notuse?: string,
 ): Promise<string[]> {
   try {
     // 質問文を動的に生成
-    let promptText = `この画像に写っている食材を識別し全てリストアップしてください。その後、それらを使ったおすすめのレシピを3つ提案してください。各レシピについて、レシピ名と簡単な調理手順を含めてください。
-出力した結果をそのまま表示するため、余計なテキストを含めず目的のプロンプトのみ生成してください。
+    let promptText = `この画像に写っている食材を識別し全てリストアップしてください。その後、それらを使ったおすすめのレシピを1つ提案してください。各レシピについて、レシピ名と簡単な調理手順を含めてください。
+出力した結果をそのまま表示するため、余計なテキストを含めず目的のプロンプトのみ生成してください。また食材リストが不明の場合はレシピは表示しないでください
 書き方の例は以下です
 "食材リスト
 \n・卵
@@ -16,7 +17,7 @@ export async function analyzeImageAndGetRecipes(
 \n・にんじん
 \n・ピーマン
 \n・トマト
-
+---------------------
 \nおすすめレシピ
 \n1.レタスチャーハン
 
@@ -34,9 +35,13 @@ export async function analyzeImageAndGetRecipes(
 \n①ウインナーは小さめに切りレタスは手でちぎっておく。
 \n②フライパンに油大匙1(分量外)を敷きウインナーと卵を割り入れて少し炒め半熟位で御飯を加え木じゃくを水で少し濡らし炒める。
 \n③焦らずゆっくり木じゃくで米を切るように炒め鶏ガラスープと塩コショウを入れ良く混ぜ合わせる。
-\n④マヨネーズをまんべんなくかけ醤油を回し入れて全体に絡めレタスを加えてサッと炒めたら完成"`;
+\n④マヨネーズをまんべんなくかけ醤油を回し入れて全体に絡めレタスを加えてサッと炒めたら完成"
+`;
     if (preferredIngredient) {
-      promptText += `特に『${preferredIngredient}』を使用したレシピを提案してください。`;
+      promptText += `特に『${preferredIngredient}』を使用したレシピを1つ提案してください。`;
+    }
+    if (notuse) {
+      promptText += `『${notuse}』を絶対に使用しないレシピを1つ提案してください。`;
     }
 
     const response = await openai.chat.completions.create({
@@ -72,11 +77,6 @@ export async function analyzeImageAndGetRecipes(
   }
 }
 
-// function parseRecipes(content: string): string[] {
-//   // OpenAIの応答をパースしてレシピのリストを作成
-//   const recipes = content.split(/\d+\.\s/).filter((recipe) => recipe.trim() !== '');
-//   return recipes.map((recipe) => recipe.trim());
-// }
 function formatRecipes(content: string): string[] {
   // 空行で分割して各セクションを取得
   const sections = content.split('\n\n').filter((section) => section.trim() !== '');

@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   height: 60px;
-  background: #fff;
+  background: black;
   border-bottom: 1px solid var(--border-color-default);
 }
 
@@ -15,16 +15,21 @@
   margin: 0 auto;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Medula+One&display=swap');
+
 .appName {
+  font-family: 'Medula One', system-ui;
   font-size: 24px;
-  font-weight: bold;
-  color: var(--font-color-default);
+  font-style: normal;
+  font-weight: 400;
+  color: white;
   letter-spacing: 0.18em;
 }
 
 @media screen and (width <= 800px) {
   .appName {
     font-size: 16px;
+    color: white;
   }
 }
 
@@ -38,6 +43,7 @@
   align-items: center;
   padding: 6px 12px;
   margin-left: auto;
+  color: white;
   text-transform: uppercase;
   cursor: pointer;
   border: 1px solid var(--border-color-default);

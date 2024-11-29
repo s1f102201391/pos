@@ -7,7 +7,9 @@ const Home = () => {
     <Layout
       render={(user) => (
         <div className={styles.container}>
-          <div className={styles.title}>Hello {user.signInName}!</div>
+          <div className={styles.title}>
+            「冷蔵庫の写真から簡単に作れるレシピを見つけましょう！」
+          </div>
           <ChatComponent />
         </div>
       )}

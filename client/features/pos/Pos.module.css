@@ -1,120 +1,142 @@
-/* チャットコンテナの親要素に対してフレックスボックスを適用 */
 .chatWrapper {
   display: flex;
-  align-items: flex-start; /* 上部から配置開始 */
+  align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: calc(100vh - 200px); /* タイトルの高さを考慮 */
-  padding: 20px 0;
+  min-height: 0;
+  padding: 20px;
 }
 
-/* チャットコンテナ */
 .chatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
-  max-width: 600px;
-  padding: 30px;
-  background-color: rgb(240 240 240 / 95%);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  max-width: 900px;
+  padding: 20px;
 }
 
-.chatContainer:hover {
-  box-shadow: 0 8px 30px rgb(0 0 0 / 20%);
-}
+/* ファイル選択ボタン */
 
-/* 入力フィールド */
-.input {
+.input[type='file'] {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
+  padding: 15px;
   font-size: 16px;
-  background-color: white;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f96;
+  border: none;
+  border-radius: 25px;
+  transition: opacity 0.3s ease;
+}
+
+/* 食材入力フィールド */
+.ingredientInput {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  background-color: #c0c0c0;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   transition: border-color 0.3s ease;
 }
 
-.input:focus {
-  border-color: #3b82f6;
-  outline: none;
+.ingredientInput::placeholder {
+  color: rgb(255 255 255 / 80%);
 }
 
-/* ボタン */
+/* レシピを探すボタン */
 .button {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 15px;
+  font-size: 32px;
   color: white;
+  text-align: center;
   cursor: pointer;
-  background-color: #3b82f6;
+  background-color: #f44;
   border: none;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  border-radius: 25px;
+  transition: opacity 0.3s ease;
 }
 
-.button:hover {
-  background-color: #2563eb;
-  transform: translateY(-2px);
+.button:hover,
+.ingredientInput:hover {
+  opacity: 0.9;
 }
 
-.button:active {
-  background-color: #1d4ed8;
-  transform: translateY(0);
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
-/* 応答メッセージ */
-.responseTitle {
-  margin: 20px 0;
-  font-size: 18px;
-  font-weight: bold;
-  color: #1f2937;
-}
-
-.responseText {
-  box-sizing: border-box; /* パディングとボーダーを含めて要素の幅を計算 */
-  display: block; /* ブロック表示にして親要素の幅を利用 */
-  width: 100%; /* 親要素の幅を使用 */
-  padding: 10px;
-  font-size: 16px;
-  word-break: break-word; /* 長い単語やURLを適切に折り返す */
-  word-wrap: break-word; /* 長い単語を折り返す */
-  background-color: #f5f5f5;
-  border-radius: 4px;
-}
-
-.error {
-  padding: 10px;
-  margin: 10px 0;
-  color: #dc2626;
-  background-color: #fee2e2;
-  border-radius: 6px;
-}
-
-.recipeList {
-  padding: 0;
-  padding: 20px;
-  margin: 0;
-  list-style-type: none;
-  background-color: white;
-  border-radius: 8px;
-}
-
-.recipeList li {
-  margin-bottom: 15px;
-  line-height: 1.6;
-  white-space: pre-wrap; /* 改行を保持 */
-}
-
+/* プレビュー画像 */
 .previewImage {
   width: 100%;
   max-height: 300px;
-  margin-bottom: 20px;
   object-fit: contain;
   border-radius: 8px;
 }
 
-.ingredientInput {
-  margin: bottom 5px;
+/* エラーメッセージ */
+.error {
+  padding: 10px;
+  color: #dc2626;
+  text-align: center;
+  background-color: #fee2e2;
+  border-radius: 12px;
+}
+
+/* レシピリスト */
+.recipeList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.recipeList li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  background-color: none;
+  border-radius: 8px;
+}
+
+/* レスポンスタイトル */
+.responseTitle {
+  margin: 20px 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* 説明テキスト */
+.helpText {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #f44;
+  text-align: center;
+}
+
+.explanation {
+  margin: 20px 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.notuse {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  background-color: #c0c0c0;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
 }

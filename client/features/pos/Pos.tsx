@@ -9,6 +9,7 @@ export const ChatComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [preferredIngredient, setPreferredIngredient] = useState('');
+  const [notuse, setnotuse] = useState('');
   const fileRef = useRef<HTMLInputElement | null>(null);
   const previewImageUrl = useMemo(() => image && URL.createObjectURL(image), [image]);
 
@@ -44,6 +45,7 @@ export const ChatComponent = () => {
           FormData: [], // 既存の型定義に合わせて空配列を設定
           imageData: base64Image,
           preferredIngredient,
+          notuse,
         },
       });
       return Ok(response.recipes);
@@ -82,16 +84,28 @@ export const ChatComponent = () => {
           onChange={handleImageUpload}
           disabled={isLoading}
         />
+        <p className={styles.explanation}>
+          使いたい食材があればここに入力してください。その食材を使ったレシピを提案します！
+        </p>
         <input
           type="text"
           value={preferredIngredient}
           onChange={(e) => setPreferredIngredient(e.target.value)}
-          placeholder="特に使いたい食材があれば入力してください"
+          placeholder="例：トマト、チーズ、マヨネーズ"
           className={styles.ingredientInput}
           disabled={isLoading}
         />
+        <p className={styles.explanation}>使いたくない食材があればここに入力してください</p>
+        <input
+          type="text"
+          value={notuse}
+          onChange={(e) => setnotuse(e.target.value)}
+          placeholder="例：卵、にんじん"
+          className={styles.notuse}
+          disabled={isLoading}
+        />
         <button className={styles.button} onClick={onSubmit} disabled={isLoading || !image}>
-          {isLoading ? '処理中...' : 'レシピを取得'}
+          {isLoading ? 'レシピを見つけています...' : 'レシピを見つける'}
         </button>
         {error && <p className={styles.error}>{error}</p>}
         <div>

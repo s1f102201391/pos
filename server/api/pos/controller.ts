@@ -11,7 +11,11 @@ export default defineController(() => ({
         };
       }
 
-      const recipes = await analyzeImageAndGetRecipes(body.imageData, body.preferredIngredient);
+      const recipes = await analyzeImageAndGetRecipes(
+        body.imageData,
+        body.preferredIngredient,
+        body.notuse,
+      );
       return {
         status: 200,
         body: { recipes },
