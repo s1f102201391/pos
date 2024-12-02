@@ -10,7 +10,7 @@ export const ChatComponent = () => {
   const [error, setError] = useState<string | null>(null);
   const [preferredIngredient, setPreferredIngredient] = useState('');
   const [notuse, setnotuse] = useState('');
-  const fileRef = useRef<HTMLInputElement | null>(null);
+  // const fileRef = useRef<HTMLInputElement | null>(null);
   const previewImageUrl = useMemo(() => image && URL.createObjectURL(image), [image]);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +18,11 @@ export const ChatComponent = () => {
     if (file) {
       setImage(file);
     }
+  };
+  const inputRef = useRef<HTMLInputElement>(null);
+  const fileUpload = () => {
+    console.log(inputRef.current);
+    inputRef.current?.click();
   };
 
   const handleSubmit = async (): Promise<Result<string[], Error>> => {
@@ -77,9 +82,13 @@ export const ChatComponent = () => {
           <img src={previewImageUrl} alt="Preview" className={styles.previewImage} />
         )}
 
+        <button className={styles.inputfile} onClick={fileUpload}>
+          ファイルアップロード
+        </button>
         <input
+          hidden
           type="file"
-          ref={fileRef}
+          ref={inputRef}
           accept="image/*"
           onChange={handleImageUpload}
           disabled={isLoading}

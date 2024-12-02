@@ -140,3 +140,16 @@
   border-radius: 6px;
   transition: border-color 0.3s ease;
 }
+
+.inputfile {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f96;
+  border: none;
+  border-radius: 25px;
+  transition: opacity 0.3s ease;
+}
