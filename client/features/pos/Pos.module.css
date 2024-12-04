@@ -16,131 +16,6 @@
   padding: 20px;
 }
 
-/* ファイル選択ボタン */
-
-.input[type='file'] {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-  background-color: #f96;
-  border: none;
-  border-radius: 25px;
-  transition: opacity 0.3s ease;
-}
-
-/* 食材入力フィールド */
-.ingredientInput {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  background-color: #c0c0c0;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  transition: border-color 0.3s ease;
-}
-
-.ingredientInput::placeholder {
-  color: rgb(255 255 255 / 80%);
-}
-
-/* レシピを探すボタン */
-.button {
-  width: 100%;
-  padding: 15px;
-  font-size: 32px;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-  background-color: #f44;
-  border: none;
-  border-radius: 25px;
-  transition: opacity 0.3s ease;
-}
-
-.button:hover,
-.ingredientInput:hover {
-  opacity: 0.9;
-}
-
-.button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* プレビュー画像 */
-.previewImage {
-  width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-/* エラーメッセージ */
-.error {
-  padding: 10px;
-  color: #dc2626;
-  text-align: center;
-  background-color: #fee2e2;
-  border-radius: 12px;
-}
-
-/* レシピリスト */
-.recipeList {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.recipeList li {
-  margin-bottom: 10px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  background-color: none;
-  border-radius: 8px;
-}
-
-/* レスポンスタイトル */
-.responseTitle {
-  margin: 20px 0 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-}
-
-/* 説明テキスト */
-.helpText {
-  margin: 10px 0;
-  font-size: 14px;
-  color: #f44;
-  text-align: center;
-}
-
-.explanation {
-  margin: 20px 0 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-}
-
-.notuse {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  background-color: #c0c0c0;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  transition: border-color 0.3s ease;
-}
-
 .inputfile {
   width: 100%;
   padding: 15px;
@@ -151,5 +26,117 @@
   background-color: #f96;
   border: none;
   border-radius: 25px;
-  transition: opacity 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.inputfile:hover {
+  background-color: #ff8c5a;
+}
+
+.ingredientInput,
+.notuse {
+  width: 100%;
+  padding: 15px 15px 15px 40px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f0f0f0;
+  border: 2px solid #d1d5db;
+  border-radius: 25px;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ingredientInput::placeholder,
+.notuse::placeholder {
+  color: #888;
+}
+
+.ingredientInput:focus,
+.notuse:focus {
+  border-color: #f96;
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(255 153 102 / 20%);
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  color: #888;
+  transform: translateY(-50%);
+}
+
+.button {
+  width: 100%;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f44;
+  border: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #f33;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.previewImage {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.error {
+  padding: 10px;
+  color: #dc2626;
+  text-align: center;
+  background-color: #fee2e2;
+  border-radius: 12px;
+}
+
+.recipeList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.recipeList li {
+  padding: 10px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.responseTitle {
+  margin: 20px 0 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.explanation {
+  margin: 20px 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
 }

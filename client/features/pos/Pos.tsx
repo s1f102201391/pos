@@ -83,7 +83,7 @@ export const ChatComponent = () => {
         )}
 
         <button className={styles.inputfile} onClick={fileUpload}>
-          ファイルアップロード
+          ここをクリックして写真をアップロード
         </button>
         <input
           hidden
