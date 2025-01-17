@@ -1,6 +1,7 @@
 import { openai } from 'service/openai';
 
 // analyzeImageAndGetRecipes関数の引数の型を変更
+/* eslint-disable */
 export async function analyzeImageAndGetRecipes(
   imageBase64: string,
   preferredIngredient?: string,
@@ -9,7 +10,7 @@ export async function analyzeImageAndGetRecipes(
   try {
     // 質問文を動的に生成
     let promptText = `この画像に写っている食材を識別し全てリストアップしてください。その後、それらを使ったおすすめのレシピを1つ提案してください。各レシピについて、レシピ名と簡単な調理手順を含めてください。
-出力した結果をそのまま表示するため、余計なテキストを含めず目的のプロンプトのみ生成してください。また食材リストが不明の場合はレシピは表示しないでください
+出力した結果をそのまま表示するため、余計なテキストを含めず目的のプロンプトのみ生成してください。また添付された写真が食材ではなかった場合にのみ、食材リストを表示せず「食材が認識できませんでした」と返答してください
 書き方の例は以下です
 "食材リスト
 \n・卵

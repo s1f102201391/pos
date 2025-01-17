@@ -18,10 +18,7 @@ const Login = () => {
   }, [user, router]);
 
   return (
-    <div
-      className={styles.container}
-      style={{ background: `center/cover url('${staticPath.images.bg_jpg}')` }}
-    >
+    <div className={styles.container} style={{ background: `center/cover url('${staticPath}')` }}>
       {user.inited && user.data === null ? (
         <div className={styles.main}>
           <div className={styles.title}>{APP_NAME}</div>

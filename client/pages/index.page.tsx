@@ -5,7 +5,7 @@ import styles from './index.module.css';
 const Home = () => {
   return (
     <Layout
-      render={(user) => (
+      render={() => (
         <div className={styles.container}>
           <div className={styles.title}>
             「冷蔵庫の写真から簡単に作れるレシピを見つけましょう！」
